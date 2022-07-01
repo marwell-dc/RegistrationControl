@@ -1,0 +1,47 @@
+@using RegistrationControl.Models.Enums
+@model EnrollmentFromViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h3>@ViewData["Title"]</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Enrollment.Id">
+            <div class="form-group">
+                <label asp-for="Enrollment.Registered" class="control-label"></label>
+                <select asp-for="Enrollment.RegisteredId" asp-items="@(new SelectList(Model.Registereds, "Id", "Name"))"
+                    class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enrollment.Live" class="control-label"></label>
+                <select asp-for="Enrollment.LiveId" asp-items="@(new SelectList(Model.Lives, "Id", "Name"))"
+                    class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enrollment.DueDate" class="control-label"></label>
+                <input asp-for="Enrollment.DueDate" class="form-control" />
+                <span asp-validation-for="Enrollment.DueDate" class="text-danger"></span>
+            </div>
+            <div class="from-group">
+                <label asp-for="Enrollment.PaymentStatus" class="control-label"></label>
+                <select asp-for="Enrollment.PaymentStatus" asp-items="Html.GetEnumSelectList<PaymentStatus>()"
+                    class="form-select">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-light">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

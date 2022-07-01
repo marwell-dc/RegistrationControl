@@ -1,0 +1,57 @@
+@model Live
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>@ViewData["Title"]</h3>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructor.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Instructor.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAndHour)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateAndHour)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DurationMinutes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DurationMinutes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationFee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationFee)
+        </dd>
+    </dl>
+</div>
+<br>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-light">Back to List</a>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

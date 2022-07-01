@@ -1,0 +1,41 @@
+@model Registered
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>@ViewData["Title"]</h3>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InstagramAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InstagramAddress)
+        </dd>
+    </dl>
+</div>
+<br>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-light">Back to List</a>
+</div>

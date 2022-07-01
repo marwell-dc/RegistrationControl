@@ -1,0 +1,54 @@
+@model LiveFromViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h3>@ViewData["Title"]</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Live.Id">
+            <div class="form-group">
+                <label asp-for="Live.Name" class="control-label"></label>
+                <input asp-for="Live.Name" class="form-control" />
+                <span asp-validation-for="Live.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Live.Description" class="contrl-label"></label>
+                <input asp-for="Live.Description" class="form-control" />
+                <span asp-validation-for="Live.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Live.DateAndHour" class="control-label"></label>
+                <input asp-for="Live.DateAndHour" class="form-control" />
+                <span asp-validation-for="Live.DateAndHour" class="text-danger"></span>
+            </div>
+            <div class="from-group">
+                <label asp-for="Live.DurationMinutes" class="control-label"></label>
+                <input asp-for="Live.DurationMinutes" class="form-control" />
+                <span asp-validation-for="Live.DurationMinutes" class="text-danger"></span>
+            </div>
+            <div class="from-group">
+                <label asp-for="Live.Instructor" class="control-label"></label>
+                <select asp-for="Live.InstructorId" asp-items="@(new SelectList(Model.Instructors, "Id", "Name"))"
+                    class="form-control"></select>
+            </div>
+            <div class="from-group">
+                <label asp-for="Live.RegistrationFee" class="control-label"></label>
+                <input asp-for="Live.RegistrationFee" class="form-control" />
+                <span asp-validation-for="Live.RegistrationFee" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-light">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
