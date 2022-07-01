@@ -52,7 +52,7 @@ namespace RegistrationControl.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Live live)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 List<Instructor> instructors = await _instructorService.FindAllAsync();
                 LiveFromViewModel viewModel = new LiveFromViewModel { Live = live, Instructors = instructors };
@@ -86,7 +86,7 @@ namespace RegistrationControl.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Live live)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 List<Instructor> instructors = await _instructorService.FindAllAsync();
                 LiveFromViewModel viewModel = new LiveFromViewModel { Live = live, Instructors = instructors };

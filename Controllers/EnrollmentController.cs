@@ -55,16 +55,12 @@ namespace RegistrationControl.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Enrollment enrollment)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                // List<Live> lives = await _liveService.FindAllAsync();
-                // List<Registered> registereds = await _registeredService.FindAllAsync();
-                // EnrollmentFromViewModel viewModel = new EnrollmentFromViewModel { Enrollment = enrollment, Live = lives, Registered = registereds };
-                // return View(viewModel);
-                var errors = ModelState.Select(x => x.Value.Errors)
-                        .Where(y => y.Count > 0)
-                        .ToList();
-                return View(errors);
+                List<Live> lives = await _liveService.FindAllAsync();
+                List<Registered> registereds = await _registeredService.FindAllAsync();
+                EnrollmentFromViewModel viewModel = new EnrollmentFromViewModel { Enrollment = enrollment, Lives = lives, Registereds = registereds };
+                return View(viewModel);
             }
 
             await _enrollmentService.InsertAsync(enrollment);
@@ -95,7 +91,7 @@ namespace RegistrationControl.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Enrollment enrollment)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 List<Live> lives = await _liveService.FindAllAsync();
                 List<Registered> registereds = await _registeredService.FindAllAsync();
